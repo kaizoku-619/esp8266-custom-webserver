@@ -52,7 +52,7 @@ void connectToWiFi() {
     Serial.println("mDNS responder started");
 }
 
-void initCallbacks() {
+void initRoutesCallbacks() {
     server.on("/",[]() {
             server.send(200,"text/html", home);
             Serial.println("/ is requested");
@@ -120,7 +120,7 @@ void setup() {
     digitalWrite(LED_PIN, HIGH);
     Serial.begin(115200);
     connectToWiFi();
-    initCallbacks();
+    initRoutesCallbacks();
     server.begin();
     Serial.print("Server listening on port ");
     Serial.println(port);
