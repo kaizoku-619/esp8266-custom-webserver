@@ -53,19 +53,19 @@ void connectToWiFi() {
 }
 
 void initRoutesCallbacks() {
-    server.on("/",[]() {
-            server.send(200,"text/html", home);
-            Serial.println("/ is requested");
+    server.on("/", []() {
+        server.send(200,"text/html", home);
+        Serial.println("/ is requested");
     });
 
     server.on("/led", []() {
-      server.send(200, "text/html", led);
-      Serial.println("/led is requested");
+        server.send(200, "text/html", led);
+        Serial.println("/led is requested");
     });
 
     server.on("/body", []() {
         Serial.println("/body is requested");
-        if (server.hasArg("plain")== false) {
+        if (server.hasArg("plain") == false) {
             server.send(200, "text/plain", "Body not received");
             return;
         }
@@ -90,7 +90,7 @@ void initRoutesCallbacks() {
 
     server.on("/verifyLogin", HTTP_POST, []() {
         // If a POST request is made to URI /login
-        if( !server.hasArg("username") ||
+        if(!server.hasArg("username") ||
             !server.hasArg("password") ||
             server.arg("username") == NULL ||
             server.arg("password") == NULL) {
@@ -99,7 +99,7 @@ void initRoutesCallbacks() {
             // The request is invalid, so send HTTP status 400
             return;
         }
-        if( server.arg("username") == USERNAME &&
+        if(server.arg("username") == USERNAME &&
             server.arg("password") == USER_PASSWORD) {
             // If both the username and the password are correct
             server.send(200, "text/html", "<h1>Welcome, " + server.arg("username") + "!</h1><p>Login successful</p>");
